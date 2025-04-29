@@ -7,12 +7,12 @@ int leerGoles() {
     while (1) {
         if (scanf("%d", &goles) != 1) {
             printf("Entrada inválida. Ingrese un número entero no negativo: ");
-            while ((c = getchar()) != '\n' && c != EOF); // limpiar entrada incorrecta
+            while ((c = getchar()) != '\n' && c != EOF);
         } else if (goles < 0) {
             printf("No se permiten goles negativos. Ingrese de nuevo: ");
-            while ((c = getchar()) != '\n' && c != EOF); // limpiar el resto de la línea
+            while ((c = getchar()) != '\n' && c != EOF);
         } else {
-            while ((c = getchar()) != '\n' && c != EOF); // limpiar el resto de la línea correcta
+            while ((c = getchar()) != '\n' && c != EOF);
             return goles;
         }
     }
@@ -78,7 +78,7 @@ int main() {
         printf("%-20s %-10d %-10d\n", equipos[i], puntos[i], golDiferencia[i]);
     }
 
-    // Determinar los dos primeros
+
     int primero = 0, segundo = 1;
     if (puntos[1] > puntos[0] || (puntos[1] == puntos[0] && golDiferencia[1] > golDiferencia[0])) {
         primero = 1;
