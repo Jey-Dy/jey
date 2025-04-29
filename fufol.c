@@ -3,19 +3,37 @@
 
 int leerGoles() {
     int goles;
-    char c;
-    while (1) {
-        if (scanf("%d", &goles) != 1) {
-            printf("Entrada inválida. Ingrese un número entero no negativo: ");
-            while ((c = getchar()) != '\n' && c != EOF);
-        } else if (goles < 0) {
-            printf("No se permiten goles negativos. Ingrese de nuevo: ");
-            while ((c = getchar()) != '\n' && c != EOF);
+    char input[20]; 
+    int valido = 0;
+
+    while (!valido) {
+        printf("Ingrese los goles (número entero no negativo): ");
+        fgets(input, sizeof(input), stdin);
+
+        
+        int i = 0;
+        valido = 1;
+        while (input[i] != '\0' && input[i] != '\n') {
+            if (input[i] < '0' || input[i] > '9') {  
+                valido = 0;
+                break;
+            }
+            i++;
+        }
+
+        
+        if (valido) {
+            sscanf(input, "%d", &goles);  
+            if (goles < 0) {  
+                printf("No se permiten goles negativos. Ingrese de nuevo.\n");
+                valido = 0;
+            }
         } else {
-            while ((c = getchar()) != '\n' && c != EOF);
-            return goles;
+            printf("Entrada inválida. Ingrese un número entero no negativo.\n");
         }
     }
+
+    return goles;
 }
 
 int main() {
@@ -77,7 +95,6 @@ int main() {
     for (i = 0; i < 4; i++) {
         printf("%-20s %-10d %-10d\n", equipos[i], puntos[i], golDiferencia[i]);
     }
-
 
     int primero = 0, segundo = 1;
     if (puntos[1] > puntos[0] || (puntos[1] == puntos[0] && golDiferencia[1] > golDiferencia[0])) {
